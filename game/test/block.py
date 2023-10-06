@@ -1,3 +1,7 @@
+import pygame
+import sys
+from pygame.locals import *
+from const import *
 class Block(pygame.sprite.Sprite):
     def __init__(self, blockType, pos):
         pygame.sprite.Sprite.__init__(self)
@@ -15,6 +19,5 @@ class Block(pygame.sprite.Sprite):
             self.rect.move_ip(0, -1)
         elif pressed[K_DOWN]:
             self.rect.move_ip(0, 1)
-
-    def draw(self, surface):
+    def draw(self,surface):
         surface.blit(self.image, self.rect)

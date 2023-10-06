@@ -1,3 +1,6 @@
+import pygame
+import sys
+from pygame.locals import *
 class BlockType:
     RED = 0
     GREEN = 1

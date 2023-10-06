@@ -1,90 +1,82 @@
 import pygame
 import sys
 from pygame.locals import *
-import random
+from block import *
+from const import *
 
+# 初始化pygame
 pygame.init()
+
+# 定义屏幕宽度和高度
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+
+# 创建显示窗口
 DISPLAY = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-class BlockType:
-    RED = 0
-    GREEN = 1
-    BLUE = 2
-    YELLOW = 3
-    ORANGE = 4
-    PURPLE = 5
-    CYAN = 6
-    BLOCKMAX = 7
-
-BLOCK_RES = {
-    BlockType.RED: "pic/red.png",
-    BlockType.GREEN: "pic/green.png",
-    BlockType.BLUE: "pic/blue.png",
-    BlockType.YELLOW: "pic/yellow.png",
-    BlockType.ORANGE: "pic/orange.png",
-    BlockType.PURPLE: "pic/purple.png",
-    BlockType.CYAN: "pic/cyan.png",
-}
-
-class Block(pygame.sprite.Sprite):
-    def __init__(self, blockType, pos):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(BLOCK_RES[blockType])
-        self.rect = self.image.get_rect()
-        self.rect.center = pos
-
-    def update(self):
-        pressed = pygame.key.get_pressed()
-        if pressed[K_LEFT]:
-            self.rect.move_ip(-1, 0)
-        elif pressed[K_RIGHT]:
-            self.rect.move_ip(1, 0)
-        elif pressed[K_UP]:
-            self.rect.move_ip(0, -1)
-        elif pressed[K_DOWN]:
-            self.rect.move_ip(0, 1)
-
-    def draw(self, surface):
-        surface.blit(self.image, self.rect)
-
+# 创建紫色和青色方块对象
 P = Block(BlockType.PURPLE, (200, 300))
 C = Block(BlockType.CYAN, (600, 300))
 
+# 游戏主循环
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
+            # 处理退出事件
             pygame.quit()
             sys.exit()
+
+    # 更新紫色和青色方块
     P.update()
     C.update()
+
+    # 填充屏幕为黑色
     DISPLAY.fill((0, 0, 0))
+
+    # 绘制紫色和青色方块
     P.draw(DISPLAY)
     C.draw(DISPLAY)
+
+    # 更新显示
     pygame.display.update()
 import pygame
 import sys
 from pygame.locals import *
-import random
+from block import *
+from const import *
 
+# 初始化pygame
 pygame.init()
+
+# 定义屏幕宽度和高度
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+
+# 创建显示窗口
 DISPLAY = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-
+# 创建紫色和青色方块对象
 P = Block(BlockType.PURPLE, (200, 300))
 C = Block(BlockType.CYAN, (600, 300))
 
+# 游戏主循环
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
+            # 处理退出事件
             pygame.quit()
             sys.exit()
+
+    # 更新紫色和青色方块
     P.update()
     C.update()
+
+    # 填充屏幕为黑色
     DISPLAY.fill((0, 0, 0))
+
+    # 绘制紫色和青色方块
     P.draw(DISPLAY)
     C.draw(DISPLAY)
+
+    # 更新显示
     pygame.display.update()
