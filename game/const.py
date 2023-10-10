@@ -11,6 +11,8 @@ class BlockType:
     ORANGE = 4
     PURPLE = 5
     CYAN = 6
+    BLOCKMAX = 7
+
 
 BLOCK_RES = {
     BlockType.RED: "pic/red.png",
@@ -24,3 +26,10 @@ BLOCK_RES = {
 
 GAME_ROW = 17
 GAME_COL = 10
+
+BLOCK_SHAPE = [
+    [(0, 0), (0, 1), (1, 0), (1, 1)],
+    [(0, 0), (0, 1), (0, 2), (0, 3)],
+    [(0, 0), (0, 1), (1, 1), (1, 2)],
+    [(0, 1), (1, 0), (1, 1), (1, 2)]
+]
