@@ -20,11 +20,35 @@ class Game(pygame.sprite.Sprite):
             self.dropBlockGroup.update()
         else:   
             self.generateDropBlockGroup()
+        
+        if self.willCollide():
+            blocks = self.dropBlockGroup.getBlocks()
+            for blk in blocks:
+                self.fixedBlockGroup.addBlocks(blk)
+            self.dropBlockGroup.clearBlocks()
+            self.dropBlockGroup = None
 
     def draw(self):
         self.fixedBlockGroup.draw(self.surface)
         if self.dropBlockGroup:
             self.dropBlockGroup.draw(self.surface)
+    def drop(self):
+        self.rowIdx += 1
+        self.updateImagePos()
+
+    def willCollide(self):
+        hash = {}
+        allIndexes = self.fixedBlockGroup.getBlockIndexes()
+        for idx in allIndexes:
+            hash[idx] = 1
+        dropIndexes = self.dropBlockGroup.getBlockIndexes()
+
+        for dropIdex in dropIndexes:
+            if hash.get(dropIdex):
+                return True
+            if dropIdex[0] >= GAME_ROW:
+                return True
+        return False
 
     def getRelPos(self):
         return(240, 50)

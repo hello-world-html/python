@@ -3,6 +3,7 @@ import random
 from pygame.locals import *
 from block import *
 from const import *
+from game import *
 
 
 class BlockGroup(object):
@@ -19,7 +20,7 @@ class BlockGroup(object):
             confingList.append(config)
         return confingList
 
-    def __init__(self, blockGroupType ,width, height, blockConfingList, relPos):
+    def __init__(self, blockGroupType, width, height, blockConfingList, relPos):
         super().__init__()
         self.blocks = []
         self.time = 0
@@ -42,7 +43,18 @@ class BlockGroup(object):
     def update(self):
         self.time += 1
         if self.blockGroupType == BlockGruopType.DROP:
-            if self.time >=1000:
+            if self.time >= 1000:
                 self.time = 0
                 for b in self.blocks:
                     b.drop()
+
+    def getBlocks(self):
+        return self.blocks
+    def clearBlocks(self):
+        self.blocks = []
+    def addBlocks(self, blk):
+        self.blocks.append(blk)
+    def getBlockIndexes(self):
+        return [block.getIndex() for block in self.blocks]
+    def getNextBlockIndexes(self):
+        return [block.getNextIndex() for block in self.blocks]

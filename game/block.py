@@ -41,3 +41,7 @@ class Block(pygame.sprite.Sprite):
     def drop(self):
         self.rowIdx += 1
         self.updateImagePos()
+    def getIndex(self):
+        return(int(self.rowIdx), int(self.colIdx))
+    def getNextINedx(self):
+        return(int(self.rowIdx+1), int(self.colIdx))
